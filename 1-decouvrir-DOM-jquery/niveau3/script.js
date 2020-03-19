@@ -1,10 +1,7 @@
 /*************************/
 /** PROGRAMME PRINCIPAL **/
 /*************************/
-
 var listOfMovie = [];
-var linespace = "\n";
-var comma = ",";
 
 $(document).ready(function () {
 
@@ -13,23 +10,22 @@ $(document).ready(function () {
     listOfMovie = splitFile(data);
     console.log(listOfMovie);
     htmlDivElement(listOfMovie);
-
-
   });
-
 });
 
 
 /***************/
 /** FONCTIONS **/
 /***************/
-
-
 function htmlDivElement(listOfMovie) {
 
-  $.each(listOfMovie, function (index, value) {
+  listOfMovie.forEach(function(value,index){
     $("#list > ul").append('<div class="film">' + value + '</div>');
   });
+
+  // $.each(listOfMovie, function (index, value) {
+  //   $("#list > ul").append('<div class="film">' + value + '</div>');
+  // });
 
 }
 
