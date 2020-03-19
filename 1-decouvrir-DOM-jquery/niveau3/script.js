@@ -1,38 +1,65 @@
+/*************************/
+/** PROGRAMME PRINCIPAL **/
+/*************************/
+
 var listOfMovie = [];
+var linespace = "\n";
+var comma =",";
 
-$(document).ready(function(){
+$(document).ready(function () {
 
-      // completer le code ici
+  $.get("playlist.txt", function (data) {
+
+    listOfMovie = splitFile(data);
+    htmlDivElement(listOfMovie);
+    
+
+  },);
 
 });
 
 
-function htmlDivElement(movie){
+/***************/
+/** FONCTIONS **/
+/***************/
 
-  var html = "";
-// completer le code ici
-  return html;
+
+function htmlDivElement(listOfMovie) {
+
+  $.each(listOfMovie, function(index, value){
+    $("#list > ul").append('<li class="film">' + value + '</li></div>');
+  });
 
 }
 
-function createMovie(i, n, d){
+function splitFile(data) {
+  data = data.split('\n');
+  data.forEach(function(element,index){
+    data[index] = element.split(',');
+    return data;
+
+}
+
+
+
+function createMovie(i, n, d) {
 
   var movie = {};
 
-// completer le code ici
+  // completer le code ici
   return movie;
 }
 
-function splitFile(data){
-  // completer le code ici
-}
 
-function addMovie(m){
+
+function addMovie(m) {
 
   listOfMovie.push(m);
 
 }
-    
+
+
+
 
 
 
