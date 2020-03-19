@@ -31,8 +31,8 @@ function htmlDivElement(listOfMovie) {
 
 function splitFile(data) {
   data = data.split('\n');
-  data.forEach(function (element, index) {
-    data[index] = element.split(',');
+  data.forEach(function (value, index) {
+    data[index] = value.split(',');
   });
     return data;
   }
