@@ -4,17 +4,18 @@
 
 var listOfMovie = [];
 var linespace = "\n";
-var comma =",";
+var comma = ",";
 
 $(document).ready(function () {
 
   $.get("playlist.txt", function (data) {
 
     listOfMovie = splitFile(data);
+    console.log(listOfMovie);
     htmlDivElement(listOfMovie);
-    
 
-  },);
+
+  });
 
 });
 
@@ -26,37 +27,38 @@ $(document).ready(function () {
 
 function htmlDivElement(listOfMovie) {
 
-  $.each(listOfMovie, function(index, value){
-    $("#list > ul").append('<li class="film">' + value + '</li></div>');
+  $.each(listOfMovie, function (index, value) {
+    $("#list > ul").append('<div class="film">' + value + '</div>');
   });
 
 }
 
 function splitFile(data) {
   data = data.split('\n');
-  data.forEach(function(element,index){
+  data.forEach(function (element, index) {
     data[index] = element.split(',');
+  });
     return data;
-
-}
+  }
+  
 
 
 
 function createMovie(i, n, d) {
 
-  var movie = {};
+      var movie = {};
 
-  // completer le code ici
-  return movie;
-}
+      // completer le code ici
+      return movie;
+    }
 
 
 
 function addMovie(m) {
 
-  listOfMovie.push(m);
+      listOfMovie.push(m);
 
-}
+    }
 
 
 
