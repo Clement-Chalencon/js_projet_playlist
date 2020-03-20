@@ -3,6 +3,7 @@
 /*************************/
 var listOfMovie = [];
 
+
 // Affichage
 $(document).ready(function () {
 
@@ -16,20 +17,20 @@ $(document).ready(function () {
     htmlDivElement(listOfMovie);
   });
 
-  $('.divFilm').click(function(){
+  $('.divFilm').click(function () {
     console.log('youpi');
   });
 
-// Boutons plays
-  $(document).on('click','.play',function(){
+  // Boutons plays
+  $(document).on('click', '.play', function () {
     id = $(this).attr('id');
     console.log(id);
     listOfMovie.forEach(function (value, index) {
-      if (value.index == id){
-        blabla=value;
+      if (value.index == id) {
+        movie = value;
       }
     });
-    createPlayCallback(blabla);
+    createPlayCallback(movie);
   });
 
 });
@@ -41,12 +42,15 @@ $(document).ready(function () {
 function htmlDivElement(movie) {
   $.each(movie, function (index) {
     $("#list").append('\
-    <div class="divFilm">\
-      <div class="divIndex">'+ movie[index].index + '</div>\
-      <div class="divTitle">'+ movie[index].name + ' (' + movie[index].duration + ') </div>\
-      <button  id="'+movie[index].index+'" class="play btn waves-effect deep-purple accent-2" type="submit" name="action">\
-      <i class="material-icons">play_arrow</i>\
-    </button></div>');
+    <div class="divFilm row z-depth-2">\
+      <div class="divIndex col s1">'+ movie[index].index + '</div>\
+      <div class="divTitle col s10">'+ movie[index].name + ' (' + movie[index].duration + ') </div>\
+      <div class=" col s1">\
+        <button  id="'+ movie[index].index + '" class="play btn waves-effect deep-orange darken-4" type="submit" name="action">\
+          <i class="material-icons">play_arrow</i>\
+        </button>\
+      </div>\
+    </div>');
   });
 }
 
