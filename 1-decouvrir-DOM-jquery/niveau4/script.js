@@ -6,23 +6,16 @@ var listOfMovie = [];
 
 // Affichage
 $(document).ready(function () {
+  showList();
 
-  $.get("playlist.txt", function (data) {
-
-    var list = splitFile(data);
-    for (i = 0; i < list.length; i++) {
-      var movie = createMovie(list[i][0], list[i][1], list[i][2]);
-      addMovie(movie);
-    }
-    htmlDivElement(listOfMovie);
+  $(document).on('click', '#refresh', function () {
+    showList();
   });
 
-  $('.divFilm').click(function () {
-    console.log('youpi');
-  });
+
 
   // Boutons plays
-  $(document).on('click', '.play', function () {
+  $(document).on('click', '.playButton', function () {
     id = $(this).attr('id');
     console.log(id);
     listOfMovie.forEach(function (value, index) {
@@ -39,6 +32,24 @@ $(document).ready(function () {
 /***************/
 /** FONCTIONS **/
 /***************/
+function showList() {
+  $('#list').html('');
+  listOfMovie = [];
+  var list = [];
+  $.get("playlist.txt", function (data) {
+    list = splitFile(data);
+    for (i = 0; i < list.length; i++) {
+      var movie = createMovie(list[i][0], list[i][1], list[i][2]);
+      addMovie(movie);
+    }
+    htmlDivElement(listOfMovie);
+  });
+
+  $('.divFilm').click(function () {
+    console.log(listOfMovie);
+  });
+}
+
 function htmlDivElement(movie) {
   $.each(movie, function (index) {
     $("#list").append('\
@@ -46,11 +57,11 @@ function htmlDivElement(movie) {
       <div class="divIndex col s1">'+ movie[index].index + '</div>\
       <div class="divTitle col s10">'+ movie[index].name + ' (' + movie[index].duration + ') </div>\
       <div class=" col s1">\
-        <button  id="'+ movie[index].index + '" class="play btn waves-effect deep-orange darken-4" type="submit" name="action">\
+        <button  id="'+ movie[index].index + '" class="playButton btn waves-effect waves-light red" type="submit" name="action">\
           <i class="material-icons">play_arrow</i>\
         </button>\
       </div>\
-    </div>');
+    </div>').hide().fadeIn(400);;
   });
 }
 
