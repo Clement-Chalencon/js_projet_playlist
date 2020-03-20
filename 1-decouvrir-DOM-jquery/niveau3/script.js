@@ -12,8 +12,9 @@ $(document).ready(function () {
       var movie = createMovie(list[i][0], list[i][1], list[i][2])
       addMovie(movie);
     }
+    console.log(listOfMovie[1].name);
 
-    htmlDivElement(list);
+    htmlDivElement(listOfMovie);
   });
 });
 
@@ -27,8 +28,14 @@ function htmlDivElement(li) {
   //   $("#list > ul").append('<div class="film">' + value + '</div>');
   // });
 
-  $.each(li, function (index, value) {
-    $("#list > ul").append('<div class="film">' + value + '</div>');
+  // $.each(li, function (index, value) {
+  //   $("#list > ul").append('<div class="film">' + value + '</div>');
+  // });
+
+  $.each(li, function (index) {
+    $("#list > ul").append('<div class="divFilm"><div class="divIndex">' 
+    + li[index].index + '</div><div class="divTitle">' 
+    + li[index].name + ' (' + li[index].duration + ') </div></div>');
   });
 
 }
