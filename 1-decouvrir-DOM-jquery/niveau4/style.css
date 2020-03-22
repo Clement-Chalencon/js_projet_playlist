@@ -1,6 +1,21 @@
 
+/** ELEMENTS **/
+
+html {
+    height: 100%;
+}
+
+body{
+    color: whitesmoke;
+    background: url(./img/b-o-g-back_1.jpg) repeat 20% 20%;
+    background-size:2000px;
+    background-attachment: fixed;
+}
+
 .navbar{
-    background-color:rgba(0,0,0,0.8)
+    background-color:rgba(0,0,0,0.8);
+
+    
 }
 
 #list{
@@ -11,53 +26,76 @@
 .divFilm{
     padding: 7px;
     padding-right: 20px;
-    background-color: rgba(0,0,0,0.8)
-    /* display: flex;
-    width: 90%;
-    height: 50px;
-    line-height: 20px;
-    background-color: rgb(75, 75, 75);
-    margin: 20px; */
+    background-color: rgba(0,0,0,0.8);
 
 }
 
+
+
+
 .divIndex{
     margin-top: 6px;
-    /* left: initial; */
-    /* text-align: center; */
-    /* background-color: aliceblue; */
-    /* color: black; */
-    /* font-size: x-large; */
-    /* width: 15%; */
-    /* border: solid 2px; */
-    /* margin: 2px; */
-
 }
 
 .divTitle{
     margin-top: 6px;
-    /* width: 100%; */
-    /* margin-left: 5%; */
-    /* display: table-cell; */
-    /* font-size: medium; */
-    /* font-style: normal; */
-    /* margin: 2px; */
-
 }
 
 
+/** EFFECTS **/
 
-.playButton{
-    /* width: 50px; */
-    /* height: auto; */
-    /* height: 20px; */
-
+.grow{
+    transition: 1s ease;
+    }
+    
+.grow:hover{
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+    transition: 0.3s ease;
+    font-weight: bold;
 }
 
-body{
-    /* background: linear-gradient(90deg, #5e35b1 , #311b92); */
-    color: whitesmoke;
-    background: url(./img/b-o-g-back_1.jpg);
-    background-size:2000px;
+.tilt {
+    -webkit-transition: all 0.5s ease;
+       -moz-transition: all 0.5s ease;
+         -o-transition: all 0.5s ease;
+        -ms-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+  }
+   
+  .tilt:hover {
+    -webkit-transform: rotate(360deg);
+       -moz-transform: rotate(360deg);
+         -o-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+    
+
+/** RESPONSIVTY **/
+
+@media screen and (max-width: 1200px) {
+    .divFilm{
+        padding-right: 30px;
+        transition: 0.3s ease;
+    } 
 }
 
+@media screen and (max-width: 780px) {
+    .divFilm{
+        padding-right:30px;
+        transition: 0.3s ease;
+    }
+}
+
+@media screen and (max-width: 575px){
+    .navbar{
+        transition: 0.3s ease;
+        height: 120px;
+    }
+    .divFilm{
+        padding-right:40px;
+        transition: 0.3s ease;
+    }
+}

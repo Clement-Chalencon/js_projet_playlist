@@ -4,20 +4,25 @@
 var listOfMovie = [];
 
 
-// Affichage
 $(document).ready(function () {
+  // initial display
+  $('.parallax').parallax();
   showList();
+  refresh();
 
-  $(document).on('click', '#refresh', function () {
-    showList();
-  });
-
-
-
-  // Boutons plays
+  // play buttons
   $(document).on('click', '.playButton', function () {
-    id = $(this).attr('id');
-    console.log(id);
+    // check the ID
+    var id = $(this).attr('id');
+
+    // Play/Pause icon display
+    if ($('#' + id + 'play').is(':hidden')) {
+      showPlay(id);
+    }
+    else {
+      showPause(id);
+    }
+    // Get the movie id
     listOfMovie.forEach(function (value, index) {
       if (value.index == id) {
         movie = value;
@@ -32,8 +37,10 @@ $(document).ready(function () {
 /***************/
 /** FONCTIONS **/
 /***************/
+
+// show the list of movies
 function showList() {
-  $('#list').html('');
+  // $('#list').html('');
   listOfMovie = [];
   var list = [];
   $.get("playlist.txt", function (data) {
@@ -50,33 +57,41 @@ function showList() {
   });
 }
 
+// write the HTML of the list
 function htmlDivElement(movie) {
   $.each(movie, function (index) {
     $("#list").append('\
-    <div class="divFilm row z-depth-2">\
+    <div class="divFilm row z-depth-2 grow">\
       <div class="divIndex col s1">'+ movie[index].index + '</div>\
-      <div class="divTitle col s10">'+ movie[index].name + ' (' + movie[index].duration + ') </div>\
+      <div class="divTitle col s10 ">'+ movie[index].name + ' (' + movie[index].duration + ') </div>\
       <div class=" col s1">\
-        <button  id="'+ movie[index].index + '" class="playButton btn waves-effect waves-light red" type="submit" name="action">\
-          <i class="material-icons">play_arrow</i>\
+        <button  id="'+ movie[index].index + '" class="playButton btn waves-effect waves-purple red" type="submit" name="action">\
+          <i id="'+ movie[index].index + 'play"class="play material-icons play">play_arrow</i>\
+          <i id="'+ movie[index].index + 'pause"class="pause material-icons play">pause</i>\
         </button>\
       </div>\
-    </div>').hide().fadeIn(400);;
+    </div>').hide().fadeIn(400);
+    $('.pause').hide();
   });
 }
 
+  // refresh button
+function refresh() {
+  $(document).on('click', '#refresh', function () {
+    $('.refresh').html('');
+    showList();
+    $('.refresh').append('\
+        <a id="refresh" class="btn-floating btn-large waves-effect waves-purple red">\
+          <i class="material-icons tilt">refresh</i>\
+        </a>').hide().delay(800).fadeIn(1000);
+  });
+}
+
+// Split the txt file in an array and splits each array's line
 function splitFile(data) {
   data = data.split('\n');
   $.each(data, function (key, value) {
     data[key] = value.split(',');
-  });
-  return data;
-}
-
-function splitFile1(data) {
-  data = data.split('\n');
-  data.forEach(function (value, index) {
-    data[index] = value.split(',');
   });
   return data;
 }
@@ -100,8 +115,18 @@ function createPlayCallback(movie) {
 }
 
 
+function showPause(id) {
+  $('.play').show();
+  $('.pause').hide();
+  $('#' + id + 'play').hide();
+  $('#' + id + 'pause').show();
+}
 
-
+function showPlay(id) {
+  $('.play').show();
+  $('.pause').hide();
+  $('#' + id + 'play').show();
+}
 
 
 
