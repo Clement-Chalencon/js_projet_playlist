@@ -1,36 +1,51 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>osc.js Web Socket Demo</title>
-        <meta charset="UTF-8" />
-        <link rel="stylesheet" type="text/css" media="all" href="style.css"></link>
-        <script src="node_modules/jquery/dist/jquery.js"></script>
-        <script src="node_modules/osc/dist/osc-browser.min.js"></script>
-        <script type="text/javascript" src="script.js"></script>
-    </head>
+<html lang="en">
 
-    <body>
-        
-        <div class="topmenu">
-            <p><center><h1>Lecteur de film</h1></center></p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecteur de la mort</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="script.js"> </script>
+  <link rel="stylesheet" type="text/css" href="style.css">
 
+</head>
+
+<body>
+  <nav class="z-depth-3 navbar">
+    <div class="wrappercenter">
+      <a id="titre" href="#" class="brand-logo center">LECTEUR DE LA MORT</a>
+      <!-- <ul id="nav-mobile" class="left hide-on-med-and-down">
+      <li><a href="sass.html">Sass</a></li>
+      <li><a href="badges.html">Components</a></li>
+      <li><a href="collapsible.html">JavaScript</a></li>
+    </ul> -->
+    </div>
+  </nav>
+
+
+  <div id="main" class="container">
+
+
+    <div id="list" class="container">
+      <!-- généré en JS -->
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col s12 center refresh">
+          <a id="refresh" class="btn-floating btn-large waves-effect waves-purple red">
+            <i class="material-icons tilt">refresh</i>
+          </a>
         </div>
-       
-            
-        <div id="main">
-            
-            <div id="list" >
-                <p><h1>playlist</h1></p>
-            </div>
-    
-            <div id="config" >
-                <p><h1>config</h1></p>
-            </div>
+      </div>
+    </div>
+  </div>
+  <!-- <script src="https://kit.fontawesome.com/f5d3148c75.js" crossorigin="anonymous"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
 
-
-        </div>
-
-
-        
-    </body>
 </html>
