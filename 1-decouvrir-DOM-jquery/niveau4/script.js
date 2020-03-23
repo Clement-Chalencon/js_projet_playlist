@@ -5,8 +5,6 @@ var listOfMovie = [];
 
 
 $(document).ready(function () {
-  // initial display
-  $('.parallax').parallax();
   showList();
   refresh();
 
@@ -40,7 +38,7 @@ $(document).ready(function () {
 
 // show the list of movies
 function showList() {
-  // $('#list').html('');
+  $('#list').html('');
   listOfMovie = [];
   var list = [];
   $.get("playlist.txt", function (data) {
