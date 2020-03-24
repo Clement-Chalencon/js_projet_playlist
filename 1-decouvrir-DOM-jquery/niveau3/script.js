@@ -7,9 +7,9 @@ $(document).ready(function () {
 
   $.get("playlist.txt", function (data) {
 
-    list = splitFile(data);
+    var list = splitFile(data);
     for (i = 0; i < list.length; i++) {
-      var movie = createMovie(list[i][0], list[i][1], list[i][2])
+      var movie = createMovie(list[i][0], list[i][1], list[i][2]);
       addMovie(movie);
     }
     console.log(listOfMovie[1].name);
@@ -23,21 +23,11 @@ $(document).ready(function () {
 /** FONCTIONS **/
 /***************/
 function htmlDivElement(li) {
-
-  // listOfMovie.forEach(function(value,index){
-  //   $("#list > ul").append('<div class="film">' + value + '</div>');
-  // });
-
-  // $.each(li, function (index, value) {
-  //   $("#list > ul").append('<div class="film">' + value + '</div>');
-  // });
-
   $.each(li, function (index) {
-    $("#list > ul").append('<div class="divFilm"><div class="divIndex">' 
-    + li[index].index + '</div><div class="divTitle">' 
-    + li[index].name + ' (' + li[index].duration + ') </div></div>');
+    $("#list > ul").append('<div class="divFilm"><div class="divIndex">'
+      + li[index].index + '</div><div class="divTitle">'
+      + li[index].name + ' (' + li[index].duration + ') </div></div>');
   });
-
 }
 
 function splitFile(data) {
@@ -45,11 +35,8 @@ function splitFile(data) {
   $.each(data, function (key, value) {
     data[key] = value.split(',');
   });
-
-
   return data;
 }
-
 
 function splitFile1(data) {
   data = data.split('\n');
@@ -59,11 +46,7 @@ function splitFile1(data) {
   return data;
 }
 
-
-
-
 function createMovie(i, n, d) {
-
   var movie = {
     index: i,
     name: n,
@@ -72,13 +55,11 @@ function createMovie(i, n, d) {
   return movie;
 }
 
-
-
-function addMovie(m) {
-
-  listOfMovie.push(m);
-
+function addMovie(movie) {
+  listOfMovie.push(movie);
 }
+
+
 
 
 

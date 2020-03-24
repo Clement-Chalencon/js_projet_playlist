@@ -7,21 +7,19 @@ var port = new osc.WebSocketPort({
 });
 
 
-
-
-
 // Cette fonction est appelée lorsqu'un message provenant du logiciel vidéo est arrivé
 port.on("message", function (oscMessage) {
-  
+
     switch (oscMessage.address) {
         case "/addMovie":
             // Ajouter 1 film à la playlist. Les films sont envoyés un par un
             // Normalement tout est écrit 
-            console.log("Recu addMovie", oscMessage);
+            // console.log("Recu addMovie", oscMessage);
             var movie = createMovie(oscMessage.args);
             listOfMovie.push(movie);
+            // console.log(listOfMovie);
             $("#list").append(htmlDivElement(movie));
-            createPlayCallback(movie);
+            // createPlayCallback(movie);
 
             break;
         case "/playIndex":
@@ -43,8 +41,10 @@ port.open();
 
 var createMovie = function (args) {
 
-    var movie = {};
-    // A COMPLETER
+    var movie = {
+        index: args[1],
+        name: args[0],
+    };
 
     return movie;
 
@@ -62,32 +62,43 @@ var sendOscMessage = function (oscAddress, arg) {
 
 
 $(document).ready(function () {
-$(document).on('click','#refresh', function(){
- console.log('toto');
- refreshPlaylist();
-});
+    
+    sendOscMessage("/player/refreshPlaylist", 1);
+    $(document).on('click', '#refresh', function () {
+        $('#list').html('');
+        $('.refresh').html('');
+        refreshPlaylist();
+        $('.refresh').append('\
+                  <a id="refresh" class="btn-floating btn-large waves-effect waves-purple red">\
+                    <i class="material-icons tilt">refresh</i>\
+                  </a>').hide().delay(800).fadeIn(1000);
+
+
+    });
+
+    $(document).on('click', '#playTest', function () {
+        console.log('playTest');
+        sendOscMessage("/player/playIndex", 3)
+        
+    });
 
 });
-
-
 
 
 // write the HTML of the list
 function htmlDivElement(movie) {
-    $.each(movie, function (index) {
-        $("#list").append('\
+    $("#list").append('\
       <div class="divFilm row z-depth-2 grow">\
-        <div class="divIndex col s1">'+ movie[index].index + '</div>\
-        <div class="divTitle col s10 ">'+ movie[index].name + ' (' + movie[index].duration + ') </div>\
+        <div class="divIndex col s1">'+ (movie.index) + '</div>\
+        <div class="divTitle col s10 ">'+ movie.name + '</div>\
         <div class=" col s1">\
-          <button  id="'+ movie[index].index + '" class="playButton btn waves-effect waves-purple red" type="submit" name="action">\
-            <i id="'+ movie[index].index + 'play"class="play material-icons play">play_arrow</i>\
-            <i id="'+ movie[index].index + 'pause"class="pause material-icons play">pause</i>\
+          <button  id="'+ (movie.index) + '" class="playButton btn waves-effect waves-purple red" type="submit" name="action">\
+            <i id="'+ (movie.index) + 'play"class="play material-icons play">play_arrow</i>\
+            <i id="'+ (movie.index) + 'pause"class="pause material-icons play">pause</i>\
           </button>\
         </div>\
       </div>').hide().fadeIn(400);
-        $('.pause').hide();
-    });
+    $('.pause').hide();
 }
 
 function createPlayCallback(movie) {
@@ -100,10 +111,6 @@ function createPlayCallback(movie) {
 
 function refreshPlaylist() {
     console.log("Refresh playlist");
-    // A COMPLETER
-
-
-    // Envoit un message au logiciel video pour demander un actualisation de la playlist
     sendOscMessage("/player/refreshPlaylist", 1);
 }
 
@@ -173,18 +180,18 @@ function refreshPlaylist() {
 // }
 
 
-// function showPause(id) {
-//     $('.play').show();
-//     $('.pause').hide();
-//     $('#' + id + 'play').hide();
-//     $('#' + id + 'pause').show();
-// }
+function showPause(id) {
+    $('.play').show();
+    $('.pause').hide();
+    $('#' + id + 'play').hide();
+    $('#' + id + 'pause').show();
+}
 
-// function showPlay(id) {
-//     $('.play').show();
-//     $('.pause').hide();
-//     $('#' + id + 'play').show();
-// }
+function showPlay(id) {
+    $('.play').show();
+    $('.pause').hide();
+    $('#' + id + 'play').show();
+}
 
 
 

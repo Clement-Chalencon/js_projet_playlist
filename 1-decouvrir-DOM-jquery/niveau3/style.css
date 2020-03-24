@@ -5,7 +5,6 @@
     line-height: 20px;
     background-color: rgb(75, 75, 75);
     margin: 2px;
-
 }
 
 .divIndex{
@@ -35,11 +34,12 @@
 .playButton{
     width: 50px;
     height: auto;
+    /* height: 20px; */
 
 }
 
 body{
-    background: linear-gradient(90deg, rgb(0, 157, 248), blue);
+    background: linear-gradient(90deg, #5e35b1, #7c4dff);
     color: whitesmoke;
 }
 
